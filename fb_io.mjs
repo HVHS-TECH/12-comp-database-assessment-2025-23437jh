@@ -38,9 +38,10 @@ import {
 // List all the functions called by code or html outside of this module
 /**************************************************************/
 
-function fb_initialise() {
+function fb_authenticate(){
 
-    const FB_GAMECONFIG = {
+   const FB_GAMECONFIG = {
+        // firebase data
         apiKey: "AIzaSyCtqOoxnHxsj7vs-AfrD8vo-20mA5Sq17A",
         authDomain: "comp-2025-joseph.firebaseapp.com",
         databaseURL: "https://comp-2025-joseph-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -55,14 +56,14 @@ function fb_initialise() {
     FB_GAMEDB  = getDatabase(FB_GAMEAPP);
     console.info(FB_GAMEDB);     
     console.log('%c fb_initialise(): ', 'color: ' + COL_C + '; background-color: ' + COL_B + ';');
-}
 
-function fb_authenticate(){
+
     console.log('%c fb_authenticate(): ', 'color: ' + COL_C + '; background-color: ' + COL_B + ';');
     const AUTH = getAuth();
     const PROVIDER = new GoogleAuthProvider();
     signInWithPopup(AUTH, PROVIDER).then((result) => {
-       fb_uid = result.user.uid;
+        //✅ Code for a successful authentication goes here
+        fb_uid = result.user.uid;
         console.log(result.user.uid);
         console.log(result);
         console.log("Authentication successful");
@@ -77,8 +78,46 @@ function fb_authenticate(){
     });
 
 }
+// Get email from the result concole log
+function fb_writeto() {
+var name = document.getElementById("name").value;
+var age = document.getElementById("age").value;
+var Email = document.getElementById("Email").value;
+    const dbReference= ref(FB_GAMEDB, ("User/"+ fb_uid));
+    var User = {Name: name, age: age, Email: Email };
+
+    set(dbReference, User).then(() => {
+        console.log("Data sucessfully sent to Database")
+        console.log(name);
+        console.log(age);
+        console.log(Email);
+        console.log(User);
+    }).catch((error) => {
+        console.log(error);
+         console.log("Error happened");
+    });
+}
+
+function fb_write(){
+var name = document.getElementById("name").value;
+var favoriteFruit = document.getElementById("favoriteFruit").value;
+var fruitQuantity = document.getElementById("fruitQuantity").value;
+ const dbReference= ref(FB_GAMEDB, "UserID/UserInformation");
+ var UserInformation = {name: name, favoriteFruit: favoriteFruit, fruitQuantity: fruitQuantity };
+    set(dbReference, UserInformation).then(() => {
+        console.log("Data sucessfully sent to Database")
+        console.log(name);
+        console.log(favoriteFruit);
+        console.log(fruitQuantity);
+        console.log(UserInformation);
+    }).catch((error) => {
+       console.log(error)
+       console.log("Error happened");
+    });
+}
 
 export { 
-    fb_initialise,
-    fb_authenticate
+ 
+    fb_authenticate,
+    fb_writeto
 };

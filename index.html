@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- stylesheets *******************************************-->
-    <link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
-
+    <link rel="stylesheet" href="./styles.css">
     <!-- firebase start ****************************************-->
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
     <!-- firebase end ******************************************-->
@@ -14,9 +13,10 @@
 <!--*************************************************************
   BODY
 **************************************************************-->
- <div class="container">
+<body>
+  <div class="container">
     <h1>Josephs Games</h1>
-    <h2>(There is only 2)</h2>
+    <h2></h2>
 
     <button onclick="fb_authenticate()">Login with Google</button>
 
@@ -26,9 +26,6 @@
 
       <label for="age">Your Age:</label>
       <input type="number" id="age" name="age" required />
-
-      <label for="Email">Your Email</label>
-      <input type="text" id="Email" name="Email" required />
 
       <!-- add more fields here -->
     </form>

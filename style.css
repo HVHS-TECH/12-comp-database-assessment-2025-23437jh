@@ -1,6 +1,6 @@
 body {
-  background-color: #ffe6eb;
-  color: #8b0000;
+  background-color: lightgoldenrodyellow;
+  color: lightcoral;
   font-family: Arial, sans-serif;
   padding: 2rem;
 }
@@ -8,20 +8,20 @@ body {
 .container {
   max-width: 600px;
   margin: auto;
-  background-color: #fff0f5;
+  background-color: lightgoldenrodyellow;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-  color: pink;
+  color: lightcoral;
   font-size: 2.5rem;
   margin-bottom: 0;
 }
 
 h2 {
-  color: #8b0000;
+  color: lightcoral;
   font-size: 1.2rem;
   margin-top: 0.2rem;
 }
@@ -42,18 +42,13 @@ input {
 button {
   margin-top: 1.5rem;
   padding: 0.7rem 1.2rem;
-  background-color: #ff5c8d;
-  color: white;
+  background-color: lightgoldenrodyellow;
+  color: lightcoral;
   border: none;
   border-radius: 6px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #e64a74;
-}
-
-#statusMessage {
-  margin-top: 1rem;
-  font-style: italic;
+  background-color: black;
 }

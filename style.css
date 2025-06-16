@@ -1,10 +1,11 @@
+/* code for body styling */
 body {
   background-color: lightgoldenrodyellow;
   color: lightcoral;
   font-family: Arial, sans-serif;
   padding: 2rem;
 }
-
+/* code for container styling */
 .container {
   max-width: 600px;
   margin: auto;
@@ -13,24 +14,24 @@ body {
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
+/* code for heading one  styling */
 h1 {
   color: lightcoral;
   font-size: 2.5rem;
   margin-bottom: 0;
 }
-
+/* code for heading two styling */
 h2 {
   color: lightcoral;
   font-size: 1.2rem;
   margin-top: 0.2rem;
 }
-
+/* code for label styling */
 label {
   display: block;
   margin-top: 1rem;
 }
-
+/* code for input styling */
 input {
   width: 100%;
   padding: 0.5rem;
@@ -38,7 +39,7 @@ input {
   border: 1px solid #ccc;
   border-radius: 6px;
 }
-
+/* code for button styling */
 button {
   margin-top: 1.5rem;
   padding: 0.7rem 1.2rem;
@@ -51,4 +52,8 @@ button {
 
 button:hover {
   background-color: black;
+}
+/* code for link styling */
+a {
+  color: lightcoral;
 }

@@ -32,19 +32,26 @@
     </form>
       <label for="Leaderboard">Leaderboard:</label>
     <button onclick="fb_writeto()">Submit</button>
-     
-    <button onclick=""><a href="https://hvhs-tech.github.io/12comp-javascript-project-2025-23437jh/">Game 1</a></button>
 
-    <button onclick=""><a href="https://hvhs-tech.github.io/12comp-javascript-project-2025-22130mb/">Game 2</a></button>
+    <button onclick="goTocoingame()">Play coin game</button>
+  
+    <button onclick="">Game 2</button>
    
      <!--Make it that a function makes the text when you click the button and call it when you click the cubmit button-->
     <p id="statusMessage"></p>
   </div>
   
   <!-- Your JS files & main module ***************************-->
-    <script type="module" src="./main.mjs"></script>
+
+    <script>
+      function goTocoingame() {
+        window.location.href = "game1.html";
+        }
+</script>
 </body>
-</html>
+
+
+
 <!--*************************************************************
   END OF INDEX.HTML
 **************************************************************-->

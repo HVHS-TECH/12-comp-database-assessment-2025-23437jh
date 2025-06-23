@@ -99,6 +99,12 @@ function fb_writeto() {
         console.log("Error happened");
     });
 }
+
+function coinHighScores(){
+concole.log("coinHighScores called");
+}
+
+
 //
 //function fb_write() {
    // var name = document.getElementById("name").value;
@@ -120,5 +126,5 @@ function fb_writeto() {
 
 export { 
     fb_authenticate,
-    fb_writeto
+    fb_writeto,
 };

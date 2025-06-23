@@ -135,6 +135,7 @@ function draw() {
             coinGroup.remove();
             Sprites.visible = false;
             Gamestate = "end";
+            coinHighScores()
         }
 
         //KeyBoard controls   
@@ -220,3 +221,23 @@ function restartGame() {
 //  END OF APP
 /*******************************************************/
 
+/******************************************************/
+//firebase code for high scores
+/******************************************************/
+const FB_GAMECONFIG = {
+        // firebase data
+        apiKey: "AIzaSyCtqOoxnHxsj7vs-AfrD8vo-20mA5Sq17A",
+        authDomain: "comp-2025-joseph.firebaseapp.com",
+        databaseURL: "https://comp-2025-joseph-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "comp-2025-joseph",
+        storageBucket: "comp-2025-joseph.firebasestorage.app",
+        messagingSenderId: "85501129840",
+        appId: "1:85501129840:web:79c64e1947643f22bc70b5",
+        measurementId: "G-BEE5KXTKTT"
+    };
+const FB_GAMEAPP = initializeApp(FB_GAMECONFIG);
+      FB_GAMEDB = getDatabase(FB_GAMEAPP);
+
+function coinHighScores(){
+console.log("coinHighScores called");
+}

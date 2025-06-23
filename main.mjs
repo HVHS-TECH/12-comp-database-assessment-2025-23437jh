@@ -10,3 +10,4 @@
 import { fb_authenticate, fb_writeto } from './fb_io.mjs';
     window.fb_authenticate  = fb_authenticate;
     window.fb_writeto  = fb_writeto;
+    

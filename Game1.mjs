@@ -3,9 +3,12 @@
 /// Written by Joseph
 /*******************************************************/
 
+import { fb_initialise,coinHighScores } from "./fb_io.mjs";
+
 /*******************************************************/
 // setup()
 /*******************************************************/
+fb_initialise();
 //Future Joseph put const in all caps
 window.preload = preload;
 window.setup = setup;
@@ -237,7 +240,5 @@ function restartGame() {
 /******************************************************/
 //firebase code for high scores
 /******************************************************/
-function coinHighScores(){
-console.log("coinHighScores called");
-}
+
 

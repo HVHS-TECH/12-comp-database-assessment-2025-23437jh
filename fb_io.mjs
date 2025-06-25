@@ -105,7 +105,10 @@ function fb_writeto() {
 }
 
 function coinHighScores(){
-concole.log("coinHighScores called");
+console.log("coinHighScores called");
+    const dbReference = ref(FB_GAMEDB, ("scores/" + fb_uid));
+    var scores = { your score:Score};
+    console.log("Your score is: " + Score);
 }
 
 
@@ -130,5 +133,6 @@ concole.log("coinHighScores called");
 export { 
     fb_initialise,
     fb_authenticate,
-    fb_writeto
+    fb_writeto,
+    coinHighScores
 };

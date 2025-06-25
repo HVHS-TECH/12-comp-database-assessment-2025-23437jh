@@ -7,6 +7,11 @@
 // setup()
 /*******************************************************/
 //Future Joseph put const in all caps
+window.preload = preload;
+window.setup = setup;
+window.draw = draw;
+window.keyPressed = keyPressed;
+
 const Numberofplatforms = 8
 //for Game height 
 const GameHeight = 800;
@@ -31,6 +36,14 @@ var Background;
 var Restart;
 //starttime
 var startTime
+// sprites group
+let Sprites;
+
+let Player;
+
+let Jumpsurfaces;
+
+let coinGroup
 
 function preload() {
     // Image for coins
@@ -43,7 +56,7 @@ function preload() {
 
 function setup() {
     console.log("setup: ");
-    cnv = new Canvas(GameWidth, GameHeight);
+    let cnv = new Canvas(GameWidth, GameHeight);
     // surfaces you can jump on
     Jumpsurfaces = new Group();
     // all the sprites 
@@ -64,16 +77,16 @@ function makePlayer() {
 }
 // function to make walls
 function makeWalls() {
-    wallL = new Sprite(0, GameHeight, 8, GameHeight * 2, 'k');
+    let wallL = new Sprite(0, GameHeight, 8, GameHeight * 2, 'k');
     wallL.color = 'black';
     wallL.bounciness = 1;
-    wallRH = new Sprite(GameWidth, 0, 8, GameHeight * 2, 'k');
+    let wallRH = new Sprite(GameWidth, 0, 8, GameHeight * 2, 'k');
     wallRH.color = 'black';
     wallRH.bounciness = 1;
-    wallTop = new Sprite(0, 0, GameWidth * 2, 8, 'k');
+    let wallTop = new Sprite(0, 0, GameWidth * 2, 8, 'k');
     wallTop.color = 'black';
     wallTop.bounciness = 1;
-    wallBot = new Sprite(0, GameHeight, GameWidth * 2, 8, 'k');
+    let wallBot = new Sprite(0, GameHeight, GameWidth * 2, 8, 'k');
     wallBot.color = 'black';
     wallBot.bounciness = 0;
     // adding the bottom wall to Jumpsurfaces group
@@ -88,10 +101,10 @@ function makeWalls() {
 
 // Function to make the platforms and make them spawn in random places 
 function platforms() {
-    for (i = 1; i < Numberofplatforms; i++) {
+    for (let i = 1; i < Numberofplatforms; i++) {
         var platformX = GameWidth * Math.random();
         var platformY = i * (GameHeight / (Numberofplatforms));
-        platform = new Sprite(platformX, platformY, 100, 8, 'k');
+        let platform = new Sprite(platformX, platformY, 100, 8, 'k');
         platform.bounciness = 0;
         platform.friction = 5;
         platform.color = 'White'
@@ -168,10 +181,10 @@ function draw() {
 }
 // function to make the coins
 function Coins() {
-    coinGroup = new Group();
+     coinGroup = new Group();
 
-    for (i = 0; i < Coinnumber; i++) {
-        coin = new Sprite(GameWidth * Math.random(), GameHeight * Math.random(), 20, 'd');
+    for (let i = 0; i < Coinnumber; i++) {
+        let coin = new Sprite(GameWidth * Math.random(), GameHeight * Math.random(), 20, 'd');
         coin.vel.x = 3;
         coin.vel.y = 4;
         coin.bounciness = 1;
@@ -224,20 +237,7 @@ function restartGame() {
 /******************************************************/
 //firebase code for high scores
 /******************************************************/
-const FB_GAMECONFIG = {
-        // firebase data
-        apiKey: "AIzaSyCtqOoxnHxsj7vs-AfrD8vo-20mA5Sq17A",
-        authDomain: "comp-2025-joseph.firebaseapp.com",
-        databaseURL: "https://comp-2025-joseph-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "comp-2025-joseph",
-        storageBucket: "comp-2025-joseph.firebasestorage.app",
-        messagingSenderId: "85501129840",
-        appId: "1:85501129840:web:79c64e1947643f22bc70b5",
-        measurementId: "G-BEE5KXTKTT"
-    };
-const FB_GAMEAPP = initializeApp(FB_GAMECONFIG);
-      FB_GAMEDB = getDatabase(FB_GAMEAPP);
-
 function coinHighScores(){
 console.log("coinHighScores called");
 }
+

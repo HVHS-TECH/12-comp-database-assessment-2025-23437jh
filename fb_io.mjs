@@ -9,6 +9,7 @@ console.log('%c fb_io.mjs', 'color: blue; background-color: white;');
 var FB_GAMEDB;
 var fb_uid;
 var fb_email;
+fb_initialise(); // Initialise the Firebase app when this module is loaded
 /**************************************************************/
 // Import all the methods you want to call from the firebase modules
 import { 
@@ -38,10 +39,9 @@ import {
 // EXPORT FUNCTIONS
 // List all the functions called by code or html outside of this module
 /**************************************************************/
+function fb_initialise() {
 
-function fb_authenticate() {
-
-    const FB_GAMECONFIG = {
+ const FB_GAMECONFIG = {
         // firebase data
         apiKey: "AIzaSyCtqOoxnHxsj7vs-AfrD8vo-20mA5Sq17A",
         authDomain: "comp-2025-joseph.firebaseapp.com",
@@ -57,6 +57,10 @@ function fb_authenticate() {
     FB_GAMEDB = getDatabase(FB_GAMEAPP);
     console.info(FB_GAMEDB);
     console.log('%c fb_initialise(): ', 'color: ' + COL_C + '; background-color: ' + COL_B + ';');
+
+}
+
+function fb_authenticate() {
 
     console.log('%c fb_authenticate(): ', 'color: ' + COL_C + '; background-color: ' + COL_B + ';');
     const AUTH = getAuth();
@@ -123,8 +127,8 @@ concole.log("coinHighScores called");
  //       console.log("Error happened");
  //   });
 //}
-
 export { 
+    fb_initialise,
     fb_authenticate,
-    fb_writeto,
+    fb_writeto
 };

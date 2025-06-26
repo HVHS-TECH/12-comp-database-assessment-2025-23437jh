@@ -104,12 +104,23 @@ function fb_writeto() {
     });
 }
 
-function coinHighScores(){
-console.log("coinHighScores called");
-    const dbReference = ref(FB_GAMEDB, ("scores/" + fb_uid));
-    var scores = { your score:Score};
-    console.log("Your score is: " + Score);
+function fb_writeScore(score){
+    if(!fb_uid){
+      console.log("User not logged in.");  
+    }
+    const dbReference = ref(FB_GAMEDB, ("Users/" + fb_uid + "/Scores/"));
+    const scoreData = { 
+    score: score,
+    email: fb_email
+    };
+    set(dbReference, scoreData)
+    .then(() => console.log ("score written to data base"))
+    .catch((error) => console.log("error writing score: ", error))
 }
+
+//function get Highscores(){
+
+//}
 
 
 //
@@ -134,5 +145,5 @@ export {
     fb_initialise,
     fb_authenticate,
     fb_writeto,
-    coinHighScores
+    fb_writeScore
 };

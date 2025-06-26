@@ -3,7 +3,7 @@
 /// Written by Joseph
 /*******************************************************/
 
-import { fb_initialise,coinHighScores } from "./fb_io.mjs";
+import { fb_initialise,fb_writeScore } from "./fb_io.mjs";
 
 /*******************************************************/
 // setup()
@@ -151,7 +151,7 @@ function draw() {
             coinGroup.remove();
             Sprites.visible = false;
             Gamestate = "end";
-            coinHighScores()
+            fb_writeScore()
         }
 
         //KeyBoard controls   

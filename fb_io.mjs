@@ -58,6 +58,31 @@ function fb_initialise() {
     console.info(FB_GAMEDB);
     console.log('%c fb_initialise(): ', 'color: ' + COL_C + '; background-color: ' + COL_B + ';');
 
+    const saved_uid = localStorage.getItem("fb_uid");
+    const saved_email = localStorage.getItem("fb_email");
+
+    if (saved_uid && saved_email) {
+        fb_uid = saved_uid;
+        fb_email = saved_email;
+        console.log("User already logged in with UID: " + fb_uid + " and Email: " + fb_email);
+}
+ const AUTH = getAuth();
+    onAuthStateChanged(AUTH, (user) => {
+        if (user) {
+            // User is signed in.
+            fb_uid = user.uid;
+            fb_email = user.email;
+            localStorage.setItem("fb_uid", fb_uid);
+            localStorage.setItem("fb_email", fb_email);
+            console.log("User is signed in with UID: " + fb_uid + " and Email: " + fb_email);
+        } else {
+            // User is signed out.
+            console.log('bad stuff');
+           
+        }
+    });
+console.log(FB_GAMEDB);
+console.log('%c fb_initialise(): ', 'color: ' + COL_C + '; background-color: ' + COL_B + ';');
 }
 
 function fb_authenticate() {
@@ -73,6 +98,9 @@ function fb_authenticate() {
         console.log(result.user.email);
         console.log(result);
         console.log("Authentication successful");
+
+        localStorage.setItem("fb_uid", fb_uid);
+        localStorage.setItem("fb_email", fb_email);
     })
     .catch((error) => {
         //❌ Code for an authentication error goes here
@@ -104,18 +132,28 @@ function fb_writeto() {
     });
 }
 
-function fb_writeScore(score){
-    if(!fb_uid){
-      console.log("User not logged in.");  
+function fb_writeScore(Score){
+    if(!fb_uid || !fb_email !== 'number') {
+      console.log("can't save score data missing:",{
+        fb_uid: fb_uid,
+        fb_email: fb_email,
+        score: Score
+      });
+      return false;
     }
     const dbReference = ref(FB_GAMEDB, ("Users/" + fb_uid + "/Scores/"));
     const scoreData = { 
-    score: score,
+    score: Score,
     email: fb_email
     };
     set(dbReference, scoreData)
-    .then(() => console.log ("score written to data base"))
-    .catch((error) => console.log("error writing score: ", error))
+    .then(() =>{ console.log ("score saved for ", fb_email);
+    return true;
+})
+.catch(error =>{
+    console.log("error writing score: ", error)
+    return false;
+});
 }
 
 //function get Highscores(){

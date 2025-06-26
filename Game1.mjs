@@ -151,7 +151,7 @@ function draw() {
             coinGroup.remove();
             Sprites.visible = false;
             Gamestate = "end";
-            fb_writeScore()
+            fb_writeScore(Score)
         }
 
         //KeyBoard controls   

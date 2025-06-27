@@ -8,7 +8,7 @@ import { fb_initialise,fb_writeScore } from "./fb_io.mjs";
 /*******************************************************/
 // setup()
 /*******************************************************/
-fb_initialise();
+//fb_initialise();
 //Future Joseph put const in all caps
 window.preload = preload;
 window.setup = setup;

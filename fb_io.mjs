@@ -133,21 +133,22 @@ function fb_writeto() {
 }
 
 function fb_writeScore(Score){
-    if(!fb_uid || !fb_email !== 'number') {
+    if(!fb_uid || !fb_email || typeof Score !== 'number') {
       console.log("can't save score data missing:",{
         fb_uid: fb_uid,
         fb_email: fb_email,
-        score: Score
+        score: Score,
+        vaildscore: typeof Score === 'number'
       });
       return false;
     }
-    const dbReference = ref(FB_GAMEDB, ("Users/" + fb_uid + "/Scores/"));
+    const dbReference = ref(FB_GAMEDB, ("/Scores/"+ fb_uid));
     const scoreData = { 
     score: Score,
-    email: fb_email
+    fb_uid: fb_uid,
     };
     set(dbReference, scoreData)
-    .then(() =>{ console.log ("score saved for ", fb_email);
+    .then(() =>{ console.log ("score saved for ", fb_uid);
     return true;
 })
 .catch(error =>{
@@ -156,9 +157,7 @@ function fb_writeScore(Score){
 });
 }
 
-//function get Highscores(){
 
-//}
 
 
 //

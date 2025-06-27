@@ -1,0 +1,19 @@
+body{
+    background-color: lightgoldenrodyellow;
+    color: lightcoral;
+    font-family: Arial, sans-serif;
+    margin:20px;
+}
+button {
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.2rem;
+  background-color: lightgoldenrodyellow;
+  color: lightcoral;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: black;
+}

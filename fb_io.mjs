@@ -56,7 +56,7 @@ function fb_initialise() {
     const FB_GAMEAPP = initializeApp(FB_GAMECONFIG);
     FB_GAMEDB = getDatabase(FB_GAMEAPP);
     console.info(FB_GAMEDB);
-    console.log('%c fb_initialise(): ', 'color: ' + COL_C + '; background-color: ' + COL_B + ';');
+    //console.log('%c fb_initialise(): ', 'color: ' + COL_C + '; background-color: ' + COL_B + ';');
 
     const saved_uid = localStorage.getItem("fb_uid");
     const saved_email = localStorage.getItem("fb_email");
@@ -157,6 +157,49 @@ function fb_writeScore(Score){
 });
 }
 
+function fb_readScore() {
+    const scoreRef = ref(FB_GAMEDB, 'Scores');
+    const scoreQuery = query(scoreRef, orderByChild('score'), limitToFirst(10));
+
+    onValue(scoreQuery, (scoresSnapshot) => {
+        const leaderboardDiv = document.getElementById("Leaderboard");
+
+        if (scoresSnapshot.exists()) {
+            const usersRef = ref(FB_GAMEDB, 'Users');
+            onValue(usersRef, (usersSnapshot) => {
+                if (usersSnapshot.exists()) {
+                    const leaderboardData = [];
+                    scoresSnapshot.forEach(scoreChild => {
+                        const userid = scoreChild.key;
+                        const userData = usersSnapshot.child(userid).val();
+
+                        if (userData) {
+                            leaderboardData.push({
+                                name: userData.Name || "unknown",
+                                score: scoreChild.val().score
+                            });
+                        }
+                    });
+                    leaderboardData.sort((a, b) => b.score - a.score);
+                    let html = '<table><tr><th>Leaderboard</th></tr>';
+                    leaderboardData.slice(0, 10).forEach((player, index) => {
+                        html += `<tr>
+                            <td>${index + 1}</td>
+                            <td>${player.name}</td>
+                            <td>${player.score}</td>
+                        </tr>`;
+                    });
+                    html += '</table>';
+
+                    leaderboardDiv.innerHTML = html;
+                } else {
+                    leaderboardDiv.innerHTML = '<p>No user data found.</p>';
+                }
+            });
+        }
+    });
+}
+
 
 
 
@@ -182,5 +225,6 @@ export {
     fb_initialise,
     fb_authenticate,
     fb_writeto,
-    fb_writeScore
+    fb_writeScore,
+    fb_readScore
 };

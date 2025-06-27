@@ -231,7 +231,7 @@ function restartGame() {
     Jumpsurfaces.removeAll();
     Sprites.visible = false;
 }
-/**************************
+/**************************/
 
 /*******************************************************/
 //  END OF APP

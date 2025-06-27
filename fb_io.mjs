@@ -131,8 +131,9 @@ function fb_writeto() {
         console.log("Error happened");
     });
 }
-
+// Function to write the score to the database
 function fb_writeScore(Score){
+    // if there is no uid or email it wont save the score to data base 
     if(!fb_uid || !fb_email || typeof Score !== 'number') {
       console.log("can't save score data missing:",{
         fb_uid: fb_uid,
@@ -143,6 +144,7 @@ function fb_writeScore(Score){
       return false;
     }
     const dbReference = ref(FB_GAMEDB, ("/Scores/"+ fb_uid));
+    // stores data in the database under the path Scores/UserID
     const scoreData = { 
     score: Score,
     fb_uid: fb_uid,
@@ -156,7 +158,7 @@ function fb_writeScore(Score){
     return false;
 });
 }
-
+// function to read the scores from data base and put them on fire base 
 function fb_readScore() {
     const scoreRef = ref(FB_GAMEDB, 'Scores');
     const scoreQuery = query(scoreRef, orderByChild('score'), limitToFirst(10));
@@ -183,6 +185,7 @@ function fb_readScore() {
                     leaderboardData.sort((a, b) => b.score - a.score);
                     let html = '<table><tr><th>Leaderboard</th></tr>';
                     leaderboardData.slice(0, 10).forEach((player, index) => {
+                        // html for the leader board 
                         html += `<tr>
                             <td>${index + 1}</td>
                             <td>${player.name}</td>
